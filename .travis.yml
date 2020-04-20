@@ -26,6 +26,11 @@ jobs:
       - cd ${TRAVIS_BUILD_DIR}/oap-cache/oap/
       - mvn clean -q -Ppersistent-memory test
     - name: oap-native-sql
+      before_install:
+      echo $TRAVIS_COMMIT_MESSAGE
+      #- if [[ $TRAVIS_COMMIT_MESSAGE != \[nativesql\]* ]]; then travis_terminate 0 ; fi ;
+      - sudo apt-get install cmake
+      - export | grep JAVA_HOME
       script:
       - cd ${TRAVIS_BUILD_DIR}/oap-native-sql/
       - cd cpp && mkdir build && cd build
