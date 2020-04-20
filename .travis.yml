@@ -25,3 +25,8 @@ jobs:
       script:
       - cd ${TRAVIS_BUILD_DIR}/oap-cache/oap/
       - mvn clean -q -Ppersistent-memory test
+    - name: oap-native-sql
+      script:
+      - cd ${TRAVIS_BUILD_DIR}/oap-native-sql/
+      - cd cpp && mkdir build && cd build
+      - cmake .. && make
