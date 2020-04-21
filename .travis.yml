@@ -47,7 +47,7 @@ jobs:
       - sudo cp release/libgandiva_protobuf.* /usr/local/lib/ && sudo ldconfig
       - sudo make install
       - cd ../../java
-      - mvn clean -Dcheckstyle.skip=true -Dmaven.test.skip=true install -q -P arrow-jni -am -Darrow.cpp.build.dir=/tmp/arrow/cpp/build/release/
+      - mvn clean install -q -P arrow-jni -am -Darrow.cpp.build.dir=/tmp/arrow/cpp/build/release/ -Dcheckstyle.skip=true -Dmaven.test.skip=true
       - cd /tmp
       - git clone https://github.com/intel-bigdata/spark.git
       - cd spark && git checkout native-sql-engine-tmp
