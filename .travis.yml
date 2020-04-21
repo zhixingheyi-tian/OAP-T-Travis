@@ -35,9 +35,9 @@ jobs:
       - export | grep JAVA_HOME
       install:
       - # Download spark 2.4.4
-      - "[ -f spark ] || mkdir spark && cd spark && wget http://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && cd .."
-      - "tar -xf ./spark/spark-2.4.4-bin-hadoop2.7.tgz"
-      - "export SPARK_HOME=`pwd`/spark-2.4.4-bin-hadoop2.7"
+      #- "[ -f spark ] || mkdir spark && cd spark && wget http://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && cd .."
+      #- "tar -xf ./spark/spark-2.4.4-bin-hadoop2.7.tgz"
+      #- "export SPARK_HOME=`pwd`/spark-2.4.4-bin-hadoop2.7"
       before_script:
       - cd /tmp
       - git clone https://github.com/zhouyuan/arrow.git
@@ -54,6 +54,7 @@ jobs:
       #- ./build/mvn -q -Pyarn -Phadoop-3.2 -Dhadoop.version=3.2.0 -DskipTests clean install
       - cd ${TRAVIS_BUILD_DIR}
       script:
-      - cd ${TRAVIS_BUILD_DIR}/oap-native-sql/
-      - cd cpp && mkdir build && cd build
-      - cmake .. && make
+      #- cd ${TRAVIS_BUILD_DIR}/oap-native-sql/
+      #- cd cpp && mkdir build && cd build
+      #- cmake .. && make
+      - echo $(ls -R ~/.m2/repository/org/apache/arrow/)
