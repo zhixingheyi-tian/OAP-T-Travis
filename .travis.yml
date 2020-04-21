@@ -40,18 +40,18 @@ jobs:
       #- "export SPARK_HOME=`pwd`/spark-2.4.4-bin-hadoop2.7"
       before_script:
       - cd /tmp
-      #- git clone https://github.com/zhouyuan/arrow.git
-      #- cd arrow && git checkout native-sql-engine-tmp && cd cpp
-      #- mkdir build && cd build 
-      #- cmake .. -DARROW_JNI=ON -DARROW_GANDIVA_JAVA=ON -DARROW_GANDIVA=ON -DARROW_PARQUET=ON -DARROW_HDFS=ON && make --ignore-errors
-      #- sudo cp release/libgandiva_protobuf.* /usr/local/lib/ && sudo ldconfig
-      #- sudo make install
-      #- cd ../../java
-      #- mvn clean install -q -P arrow-jni -am -Darrow.cpp.build.dir=/tmp/arrow/cpp/build/release/ -DskipTests -Dcheckstyle.skip
+      - git clone https://github.com/zhouyuan/arrow.git
+      - cd arrow && git checkout native-sql-engine-tmp && cd cpp
+      - mkdir build && cd build 
+      - cmake .. -DARROW_JNI=ON -DARROW_GANDIVA_JAVA=ON -DARROW_GANDIVA=ON -DARROW_PARQUET=ON -DARROW_HDFS=ON && make --ignore-errors
+      - sudo cp release/libgandiva_protobuf.* /usr/local/lib/ && sudo ldconfig
+      - sudo make install
+      - cd ../../java
+      - mvn clean -Dcheckstyle.skip=true -Dmaven.test.skip=true install -q -P arrow-jni -am -Darrow.cpp.build.dir=/tmp/arrow/cpp/build/release/
       - cd /tmp
       - git clone https://github.com/intel-bigdata/spark.git
       - cd spark && git checkout native-sql-engine-tmp
-      - ./build/mvn -q -Pyarn -Phadoop-3.2 -Dhadoop.version=3.2.0 -DskipTests clean install
+      - ./build/mvn -q -Pyarn -Phadoop-3.2 -Dhadoop.version=3.2.0 -Dcheckstyle.skip=true -Dmaven.test.skip=true clean install
       - cd ${TRAVIS_BUILD_DIR}
       script:
       - cd ${TRAVIS_BUILD_DIR}/oap-native-sql/
