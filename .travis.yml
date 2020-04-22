@@ -39,7 +39,7 @@ jobs:
       #- "tar -xf ./spark/spark-2.4.4-bin-hadoop2.7.tgz"
       #- "export SPARK_HOME=`pwd`/spark-2.4.4-bin-hadoop2.7"
       before_script:
-      - cd /tmp
+      - cd ${TRAVIS_BUILD_DIR}/dev
       #- git clone https://github.com/zhouyuan/arrow.git
       #- cd arrow && git checkout native-sql-engine-tmp && cd cpp
       #- mkdir build && cd build 
@@ -48,12 +48,7 @@ jobs:
       #- sudo make install
       #- cd ../../java
       #- mvn clean -Dcheckstyle.skip=true -Dmaven.test.skip=true install -q -P arrow-jni -am -Darrow.cpp.build.dir=/tmp/arrow/cpp/build/release/
-      - cd /tmp
-      - git clone -b v2.4.4 https://github.com/apache/spark.git
-      - cd spark
-      - ./build/mvn -q -Pyarn -Phadoop-3.2 -Dhadoop.version=3.2.0 -Dcheckstyle.skip=true -Dmaven.test.skip=true clean install
-      - echo $(ls -R ~/.m2/repository/org/apache/spark/)
-      - cd ${TRAVIS_BUILD_DIR}
+      - ./install-intelSpark.sh
       script:
       #- cd ${TRAVIS_BUILD_DIR}/oap-native-sql/
       #- cd cpp && mkdir build && cd build
