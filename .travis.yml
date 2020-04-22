@@ -21,7 +21,8 @@ jobs:
       - cd memkind && ./build.sh
       - make
       - sudo make install
-      - cd ${TRAVIS_BUILD_DIR}
+      - cd ${TRAVIS_BUILD_DIR}/dev
+      - ./install-intelArrow.sh
       script:
       - cd ${TRAVIS_BUILD_DIR}/oap-cache/oap/
       - mvn clean -q -Ppersistent-memory test
