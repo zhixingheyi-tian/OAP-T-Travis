@@ -5,13 +5,13 @@ cd /tmp
 
 #install vemecache
 git clone https://github.com/pmem/vmemcache.git
-pushd vmemcache
+cd vmemcache
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCPACK_GENERATOR=deb
 make package
 sudo dpkg -i libvmemcache*.deb
-popd
+#popd
 #install arrow and plasms
 cd /tmp
 # TODO change to Intel-bigdata one
