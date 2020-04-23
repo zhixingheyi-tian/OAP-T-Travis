@@ -26,6 +26,7 @@ jobs:
       script:
       - cd ${TRAVIS_BUILD_DIR}/oap-cache/oap/
       - mvn clean -q -Ppersistent-memory test
+      - echo $(ls -R ~/.m2/repository/org/apache/arrow/)
     - name: oap-native-sql
       dist: bionic
       jdk: openjdk8
